@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const posts = [{id:"oscos"}]; 
   return posts;
