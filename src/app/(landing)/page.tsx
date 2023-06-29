@@ -1,4 +1,4 @@
-import Image from 'next/image'
+/*import Image from 'next/image'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -92,4 +92,14 @@ export default function Home() {
       </div>
     </main>
   )
+}
+*/
+
+export default async function Page() {
+  const res = await fetch('http://localhost:3000/api/delay');
+  const json = await res.json();
+  return <>
+    LANDED
+  </>
+
 }
