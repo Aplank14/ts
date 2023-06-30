@@ -1,3 +1,5 @@
 export default function NotFound() {
-    return <h1>oops</h1>
+  return <>
+      <h1>oops</h1>
+    </>
   }
