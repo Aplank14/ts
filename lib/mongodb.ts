@@ -1,4 +1,6 @@
+import 'server-only'
 import { MongoClient } from 'mongodb'
+import {cache} from 'react'
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
@@ -27,6 +29,16 @@ if (process.env.NODE_ENV === 'development') {
   client = new MongoClient(uri, options)
   clientPromise = client.connect()
 }
+
+export const getUsers = cache(async () => {
+  const client = await clientPromise
+  const dab = client.db("SampleDB")
+  const collection = dab.collection('SampleCollection');
+  const document = await collection.find({}, { projection: {sku : true}});
+  const r = await document.toArray()
+  const routes = r.map((doc) => { return {id: doc.sku}});
+  return routes;
+});
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can be shared across functions.

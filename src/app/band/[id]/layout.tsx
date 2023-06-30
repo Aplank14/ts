@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: 'desc',
 }
 
-export default function DashboardLayout({
+export default function Layout({
     children, // will be a page or nested layout
   }: {
     children: React.ReactNode
